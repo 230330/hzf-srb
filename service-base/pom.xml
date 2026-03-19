@@ -15,9 +15,8 @@
     <dependencies>
         <!-- 引入 guigu-common 模块 -->
         <dependency>
-            <groupId>com.hzf.guigu</groupId>
+            <groupId>com.hzf</groupId>
             <artifactId>guigu-common</artifactId>
-            <version>1.0.0</version>
         </dependency>
 
         <!-- MySQL -->

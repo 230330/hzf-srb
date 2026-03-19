@@ -9,9 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hzf.guigu</groupId>
     <artifactId>guigu-common</artifactId>
-    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <description>公共工具类模块</description>

@@ -96,6 +96,27 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- ==================== 内部模块依赖管理 ==================== -->
+            <!-- guigu-common 公共工具模块 -->
+            <dependency>
+                <groupId>com.hzf</groupId>
+                <artifactId>guigu-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- service-base 基础服务模块 -->
+            <dependency>
+                <groupId>com.hzf</groupId>
+                <artifactId>service-base</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- service-core 核心服务模块 -->
+            <dependency>
+                <groupId>com.hzf</groupId>
+                <artifactId>service-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- ==================== 第三方依赖管理 ==================== -->
             <!--Spring Cloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

@@ -1,5 +1,7 @@
 package com.hzf.service.core.controller.admin;
 
+import com.hzf.guigu.common.exception.BusinessException;
+import com.hzf.guigu.common.result.ResponseEnum;
 import com.hzf.guigu.common.result.Result;
 import com.hzf.service.core.entity.IntegralGrade;
 import com.hzf.service.core.service.IIntegralGradeService;
@@ -46,6 +48,12 @@ public class AdminIntegralGradeController {
     @PostMapping("/save")
     @ApiOperation(value = "保存或更新积分等级", notes = "保存或更新积分等级")
     public Result save(@RequestBody IntegralGrade integralGrade){
+        //如果借款额度为空就手动抛出一个自定义的异常！
+        if (integralGrade.getBorrowAmount() == null){
+            //BORROW_AMOUNT_NULL_ERROR(-201, "借款额度不能为空"),
+            throw new BusinessException(ResponseEnum.BORROW_AMOUNT_NULL_ERROR);
+        }
+
         boolean saveResult = iIntegralGradeService.saveOrUpdate(integralGrade);
         if(saveResult)
             return Result.success().message("保存或更新积分等级成功");

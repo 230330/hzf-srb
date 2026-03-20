@@ -25,7 +25,7 @@ public class UnifiedExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class) // 当 controller 中抛出 Exception，则捕获
     public Result handle(Exception e) {
-        log.error("统一异常处理类捕获异常：{}", e.toString());
+        log.error(e.getMessage(), e);
         return Result.error();
     }
 
@@ -34,7 +34,13 @@ public class UnifiedExceptionHandler {
      */
     @ExceptionHandler(value = BadSqlGrammarException.class) // 当 controller 中抛出 Exception，则捕获
     public Result handle(BadSqlGrammarException e) {
-        log.error("统一异常处理类捕获异常：{}", e.toString());
+        log.error(e.getMessage(), e);
         return Result.other(ResponseEnum.BAD_SQL_GRAMMAR_ERROR).message(e.getMessage());
+    }
+
+    @ExceptionHandler(value = BusinessException.class) // 当 controller 中抛出 BusinessException，则捕获
+    public Result handle(BusinessException e) {
+        log.error(e.getMessage(), e);
+        return Result.error().message(e.getMessage()).code(e.getCode());
     }
 }

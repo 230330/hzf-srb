@@ -1,5 +1,6 @@
 package com.hzf.service.core.controller.admin;
 
+import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.hzf.guigu.common.exception.BusinessException;
 import com.hzf.guigu.common.result.ResponseEnum;
 import com.hzf.guigu.common.result.Result;
@@ -48,10 +49,24 @@ public class AdminIntegralGradeController {
     @PostMapping("/save")
     @ApiOperation(value = "保存或更新积分等级", notes = "保存或更新积分等级")
     public Result save(@RequestBody IntegralGrade integralGrade){
-        //如果借款额度为空就手动抛出一个自定义的异常！
+        //收集所有校验错误信息
+        StringBuilder errors = new StringBuilder();
+        if (integralGrade.getIntegralStart() == null){
+            errors.append(ResponseEnum.INTEGRAL_START_NULL_ERROR.getMessage()).append("；");
+        }
+        if (integralGrade.getIntegralEnd() == null){
+            errors.append(ResponseEnum.INTEGRAL_END_NULL_ERROR.getMessage()).append("；");
+        }
         if (integralGrade.getBorrowAmount() == null){
-            //BORROW_AMOUNT_NULL_ERROR(-201, "借款额度不能为空"),
-            throw new BusinessException(ResponseEnum.BORROW_AMOUNT_NULL_ERROR);
+            errors.append(ResponseEnum.BORROW_AMOUNT_NULL_ERROR.getMessage()).append("；");
+        }
+        //使用断言来判断 可以优化以上三个if判断语句 这里的Assert是mybatisplus提供的，可以使用guigu-common下的Assert
+//        Assert.notNull(integralGrade.getIntegralStart(),ResponseEnum.INTEGRAL_START_NULL_ERROR.getMessage());
+//        Assert.notNull(integralGrade.getIntegralEnd(),ResponseEnum.INTEGRAL_END_NULL_ERROR.getMessage());
+//        Assert.notNull(integralGrade.getBorrowAmount(),ResponseEnum.BORROW_AMOUNT_NULL_ERROR.getMessage());
+        //如果有校验错误，抛出异常
+        if (errors.length() > 0){
+            throw new BusinessException(errors.toString());
         }
 
         boolean saveResult = iIntegralGradeService.saveOrUpdate(integralGrade);

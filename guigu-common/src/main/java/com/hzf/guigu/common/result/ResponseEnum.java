@@ -17,6 +17,8 @@ public enum ResponseEnum {
 
 
     //-2xx 参数校验
+    INTEGRAL_START_NULL_ERROR(-200, "积分区间开始不能为空"),
+    INTEGRAL_END_NULL_ERROR(-199, "积分区间结束不能为空"),
     BORROW_AMOUNT_NULL_ERROR(-201, "借款额度不能为空"),
     MOBILE_NULL_ERROR(-202, "手机号码不能为空"),
     MOBILE_ERROR(-203, "手机号码不正确"),

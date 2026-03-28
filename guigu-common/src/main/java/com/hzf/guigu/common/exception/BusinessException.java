@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  * 业务异常类，用于抛出业务异常（运行时异常）
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true) // 继承父类的属性
 @NoArgsConstructor // 无参构造函数
 public class BusinessException extends RuntimeException {
     

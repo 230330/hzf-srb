@@ -70,12 +70,7 @@ public class AdminIntegralGradeController {
     }
 
     /**
-     * 保存或更新积分等级
-     * <p>
-     * 根据积分等级对象是否有ID判断是新增还是更新操作：
-     * - 有ID：更新操作
-     * - 无ID：新增操作
-     * </p>
+     * 保存积分等级
      * <p>
      * 参数校验：
      * - 积分起始值不能为空
@@ -84,11 +79,11 @@ public class AdminIntegralGradeController {
      * </p>
      *
      * @param integralGrade 积分等级实体对象
-     * @return 保存或更新结果的统一响应
+     * @return 保存结果的统一响应
      * @throws BusinessException 参数校验失败时抛出业务异常
      */
     @PostMapping("/save")
-    @ApiOperation(value = "保存或更新积分等级", notes = "保存或更新积分等级")
+    @ApiOperation(value = "保存积分等级", notes = "保存积分等级")
     public Result save(@RequestBody IntegralGrade integralGrade) {
         // 收集所有校验错误信息
         StringBuilder errors = new StringBuilder();
@@ -106,11 +101,11 @@ public class AdminIntegralGradeController {
             throw new BusinessException(errors.toString());
         }
 
-        boolean saveResult = iIntegralGradeService.saveOrUpdate(integralGrade);
+        boolean saveResult = iIntegralGradeService.save(integralGrade);
         if (saveResult) {
-            return Result.success().message("保存或更新积分等级成功");
+            return Result.success().message("保存积分等级成功");
         } else {
-            return Result.error().message("保存或更新积分等级失败");
+            return Result.error().message("保存积分等级失败");
         }
     }
 
@@ -137,14 +132,15 @@ public class AdminIntegralGradeController {
      * @param integralGrade 积分等级实体对象（需包含ID）
      * @return 更新结果的统一响应
      */
-    @PutMapping("/updateById")
+    @PutMapping("/updateById/{id}")
     @ApiOperation(value = "根据 ID 更新积分等级", notes = "根据 ID 更新积分等级")
-    public Result updateById(@RequestBody IntegralGrade integralGrade) {
+    public Result updateById(@PathVariable Long id, @RequestBody IntegralGrade integralGrade) {
+        integralGrade.setId(id); // 确保 id 被设置
         boolean updateResult = iIntegralGradeService.updateById(integralGrade);
         if (updateResult) {
-            return Result.success().message("根据 ID 更新积分等级成功");
+            return Result.success().message("更新积分等级成功");
         } else {
-            return Result.error().message("根据 ID 更新积分等级失败");
+            return Result.error().message("更新积分等级失败");
         }
     }
 

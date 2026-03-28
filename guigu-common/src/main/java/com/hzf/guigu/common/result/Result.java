@@ -16,7 +16,9 @@ public class Result {
     private String message;
     private Map<String, Object> data = new HashMap<>();
 
-    //创建私有构造方法，防止外部实例化
+    /**
+     * 私有构造函数，防止外部实例化
+     */
     private Result(){
     }
 
@@ -75,7 +77,7 @@ public class Result {
     }
 
     /**
-     * 创建方法，返回结果信息
+     * 创建方法，返回状态码
      * @param code 状态码
      * @return Result
      */

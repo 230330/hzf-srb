@@ -51,7 +51,12 @@ public enum ResponseEnum {
 
     private final Integer code;
     private final String message;
-
+   /**
+     * 私有构造函数，防止外部实例化
+     *
+     * @param code    状态码
+     * @param message 状态码对应的描述信息
+     */
     ResponseEnum(Integer code, String message) {
         this.code = code;
         this.message = message;

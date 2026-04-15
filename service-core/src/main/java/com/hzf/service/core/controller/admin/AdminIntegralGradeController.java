@@ -31,7 +31,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/admin/core/integralGrade")
-@Api(tags = "积分等级管理", description = "积分等级管理接口")
+@Api(tags = "积分等级管理")
 @Slf4j
 public class AdminIntegralGradeController {
 

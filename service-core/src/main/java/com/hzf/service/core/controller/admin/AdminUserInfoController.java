@@ -33,7 +33,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/admin/core/userInfo")
-@Api(tags = "管理员-用户信息管理", description = "管理员用户信息管理接口")
+@Api(tags = "管理员-用户信息管理")
 @Slf4j
 public class AdminUserInfoController {
 

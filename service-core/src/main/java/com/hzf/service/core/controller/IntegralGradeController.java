@@ -22,7 +22,7 @@ import java.util.List;
  * @since 2026-03-17
  */
 @CrossOrigin
-@Api(tags = "网站积分等级管理", description = "网站积分等级管理接口")
+@Api(tags = "网站积分等级管理")
 @RestController
 @RequestMapping("/web/core/integralGrade")
 public class IntegralGradeController {
